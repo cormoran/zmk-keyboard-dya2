@@ -36,7 +36,7 @@
 
 &trackball_r {
     status = "okay";
-    compatible = "pixart,pmw3610";
+    compatible = "cormoran,pmw3610";
     // 2MHz suggested in datasheet
     spi-max-frequency = <2000000>;
     irq-gpios = <&xiao_d 9 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
