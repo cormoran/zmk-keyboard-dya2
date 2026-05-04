@@ -7,6 +7,7 @@
 #include <dt-bindings/zmk_behavior_default_layer/default_layer.h>
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
+
 #include <dt-bindings/zmk/pointing.h>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/outputs.h>
