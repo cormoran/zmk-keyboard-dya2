@@ -321,3 +321,9 @@
 		};
 	};
 };
+
+// For zephyr4.1
+// Disabling default CDC ACM UART
+&board_cdc_acm_uart {
+	status = "disabled";
+};
