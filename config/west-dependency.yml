@@ -39,17 +39,12 @@ manifest:
           - edtt
           - trusted-firmware-m
     - name: zmk-pmw3610-driver
-      revision: migrate-to-v4
     - name: zmk-feature-default-layer
-      revision: migrate-to-v4
     - name: zmk-driver-animation
-      revision: migrate-to-v4
     - name: zmk-driver-ext-power-transient
     - name: zmk-module-ble-management
-      revision: migrate-to-v4
     - name: zmk-module-battery-history
     - name: zmk-module-runtime-input-processor
-      revision: migrate-to-v4
     - name: zmk-module-settings-rpc
   self:
     path: config
