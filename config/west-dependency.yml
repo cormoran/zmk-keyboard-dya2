@@ -15,9 +15,9 @@ manifest:
       import:
         file: app/west.yml
       clone-depth: 1
-      revision: v0.3-branch+dya
+      revision: main+dya
     - name: zephyr
-      revision: v3.5.0+zmk-fixes+nrf-half-duplex-uart
+      revision: v4.1.0+zmk-fixes+nrf-half-duplex-uart
       clone-depth: 1
       import:
         name-blocklist:
@@ -28,7 +28,6 @@ manifest:
           - hal_microchip
           - hal_nxp
           - hal_openisa
-          - hal_silabs
           - hal_xtensa
           - hal_st
           - hal_ti
