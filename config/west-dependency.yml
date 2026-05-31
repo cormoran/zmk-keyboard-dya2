@@ -46,5 +46,8 @@ manifest:
     - name: zmk-module-battery-history
     - name: zmk-module-runtime-input-processor
     - name: zmk-module-settings-rpc
+    - name: zmk-feature-input-stream
+    - name: zmk-feature-module-physical-layout
+    - name: zmk-feature-custom-settings
   self:
     path: config

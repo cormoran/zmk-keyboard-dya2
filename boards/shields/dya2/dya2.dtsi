@@ -176,6 +176,16 @@
 		half-duplex;
 	};
 	
+	trackball_layout: trackball_layout {
+		compatible = "cormoran,physical-layout-trackball";
+		display-name = "Trackball";
+		size = <180>;
+		x = <1200>;
+		y = <420>;
+		
+		linked-device-identifiers = "mouse", "scroll";
+		linked-subsystems = "cormoran_rip", "cormoran_rip";
+	};
 };
 
 &mouse_runtime_input_processor {
