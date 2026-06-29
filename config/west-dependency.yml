@@ -49,5 +49,7 @@ manifest:
     - name: zmk-feature-input-stream
     - name: zmk-feature-module-physical-layout
     - name: zmk-feature-custom-settings
+    - name: zmk-feature-runtime-combo
+    - name: zmk-feature-runtime-macro
   self:
     path: config
