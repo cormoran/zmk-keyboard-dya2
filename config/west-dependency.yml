@@ -48,6 +48,7 @@ manifest:
     - name: zmk-module-ble-management
     - name: zmk-module-battery-history
     - name: zmk-module-runtime-input-processor
+      revision: feat/custom-settings-storage
     - name: zmk-module-settings-rpc
     - name: zmk-feature-input-stream
     - name: zmk-feature-module-physical-layout
