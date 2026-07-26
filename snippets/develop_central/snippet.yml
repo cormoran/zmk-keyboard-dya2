@@ -1,0 +1,4 @@
+name: develop_central
+append:
+  EXTRA_DTC_OVERLAY_FILE: develop_central.overlay
+  EXTRA_CONF_FILE: develop_central.conf

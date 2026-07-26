@@ -27,3 +27,17 @@ include:
     board: xiao_ble//zmk
     shield: dya2_left
     cmake-args: -DCONFIG_ZMK_SETTINGS_RESET_ON_START=y
+
+  - artifact: right_trackball_develop
+    board: xiao_ble//zmk
+    shield: dya2_right
+    snippets:
+      - studio-rpc-usb-uart
+      - right-trackball
+      - develop_central
+
+  - artifact: left_develop
+    board: xiao_ble//zmk
+    shield: dya2_left
+    snippets:
+      - develop_peripheral

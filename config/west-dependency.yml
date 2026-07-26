@@ -38,13 +38,29 @@ manifest:
           - openthread
           - edtt
           - trusted-firmware-m
-    - name: zmk-pmw3610-driver
+    - name: zmk-driver-pmw3610-with-custom-studio-rpc
+    - name: zmk-feature-os-detection
     - name: zmk-feature-default-layer
+      revision: codex/custom-rpc-rewrite
+      import: true
     - name: zmk-driver-animation
     - name: zmk-driver-ext-power-transient
     - name: zmk-module-ble-management
     - name: zmk-module-battery-history
     - name: zmk-module-runtime-input-processor
     - name: zmk-module-settings-rpc
+    - name: zmk-feature-input-stream
+    - name: zmk-feature-module-physical-layout
+    - name: zmk-feature-custom-settings
+    - name: zmk-feature-runtime-combo
+    - name: zmk-feature-runtime-macro
+    # For development build only
+    - name: zmk-module-devtool
+    - name: zmk-feature-studio-rpc-perf
+    - name: zmk-feature-zephyr-setting-expose
+    - name: zmk-feature-device-info
+    - name: zmk-feature-kscan-diagnostics
+    - name: zmk-feature-watchdog
+    - name: zmk-feature-fast-keymap
   self:
     path: config
