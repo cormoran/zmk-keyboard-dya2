@@ -11,4 +11,7 @@ endif
 if SHIELD_DYA2_LEFT || SHIELD_DYA2_RIGHT
 config ZMK_SPLIT
     default y
+
+config ZMK_KSCAN_CHARLIEPLEX_WAIT_BEFORE_INPUTS
+    default 20
 endif
