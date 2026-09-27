@@ -62,5 +62,7 @@ manifest:
     - name: zmk-feature-kscan-diagnostics
     - name: zmk-feature-watchdog
     - name: zmk-feature-fast-keymap
+    - name: zmk-feature-typing-heatmap
+      revision: b71e5b17cc324fd96d72ec3f70b5f8da6159993a
   self:
     path: config
