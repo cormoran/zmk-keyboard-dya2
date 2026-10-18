@@ -1,5 +1,7 @@
 #include <zephyr/dt-bindings/input/input-event-codes.h>
 
+#define DYA2_RUNTIME_TAPDANCE_CENTRAL
+
 #include "dya2.dtsi"
 
 

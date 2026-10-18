@@ -54,6 +54,8 @@ manifest:
     - name: zmk-feature-custom-settings
     - name: zmk-feature-runtime-combo
     - name: zmk-feature-runtime-macro
+    - name: zmk-feature-runtime-tapdance
+      import: true
     # For development build only
     - name: zmk-module-devtool
     - name: zmk-feature-studio-rpc-perf
