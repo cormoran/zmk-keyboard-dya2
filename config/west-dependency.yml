@@ -62,5 +62,6 @@ manifest:
     - name: zmk-feature-kscan-diagnostics
     - name: zmk-feature-watchdog
     - name: zmk-feature-fast-keymap
+      revision: 575411dccf20992e6f86a8b7de44ec38345ccb09 # cormoran/zmk-feature-fast-keymap#5
   self:
     path: config
