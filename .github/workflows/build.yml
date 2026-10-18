@@ -8,11 +8,42 @@ on:
   workflow_dispatch:
     inputs:
       release:
-        description: "Create a release artifact with given version"
-        required: true
+        description: "Release version (leave empty to build only)"
+        required: false
 
 jobs:
+  prepare-release:
+    runs-on: ubuntu-latest
+    container:
+      image: zmkfirmware/zmk-build-arm:stable
+    permissions:
+      contents: write
+    outputs:
+      sha: ${{ steps.freeze.outputs.release_sha }}
+    steps:
+      - name: Checkout
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.release != '' }}
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Freeze dependencies and push release branch
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.release != '' }}
+        id: freeze
+        env:
+          RELEASE_VERSION: ${{ inputs.release }}
+        run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          west init -l config --mf west-standalone.yml
+          west update --narrow
+          python3 scripts/prepare-release.py "$RELEASE_VERSION" > "$RUNNER_TEMP/release-output"
+          cat "$RUNNER_TEMP/release-output"
+          cat "$RUNNER_TEMP/release-output" >> "$GITHUB_OUTPUT"
+          git push --force-with-lease="refs/heads/release/$RELEASE_VERSION:" \
+            origin "HEAD:refs/heads/release/$RELEASE_VERSION"
   build:
+    needs: prepare-release
     runs-on: ubuntu-latest
     container:
       image: zmkfirmware/zmk-build-arm:stable
@@ -20,6 +51,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.prepare-release.outputs.sha || github.sha }}
       - name: Cache west modules
         uses: actions/cache@v4
         continue-on-error: true
@@ -56,12 +89,16 @@ jobs:
           path: artifacts
   release:
     if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.release != '' }}
-    needs: build
+    needs: [prepare-release, build]
     runs-on: ubuntu-latest
     name: Release
+    permissions:
+      contents: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.prepare-release.outputs.sha }}
       - name: Download artifacts
         uses: actions/download-artifact@v4
         with:
@@ -69,11 +106,12 @@ jobs:
           path: artifacts
       - name: Create release
         run: |
-          gh release create ${{ github.event.inputs.release }} \
-            --title "DYA2 firmware ${{ github.event.inputs.release }}" \
+          gh release create "$RELEASE_VERSION" \
+            --title "DYA2 firmware $RELEASE_VERSION" \
             --generate-notes \
             --latest \
-            --target ${{ github.sha }} \
+            --target "${{ needs.prepare-release.outputs.sha }}" \
             artifacts/*.uf2
         env:
           GH_TOKEN: ${{ github.token }}
+          RELEASE_VERSION: ${{ inputs.release }}

@@ -26,6 +26,18 @@ You can check and configure keymap, trackball setting and various settings from 
 It's configured by default thanks to ZMK's template. Just pushing commit to github starts github actions.
 The firmware will be available in "Actions" tab's latest build artifacts as `firmware.zip`.
 
+## Release
+
+Run **Build ZMK firmware** from the Actions tab and enter a version in the
+`release` field. The workflow updates the active West dependencies, creates a
+`release/<version>` branch from the selected commit, and commits a flattened
+`config/west-dependency.yml` with every active project's commit hash. It then
+builds from that commit and creates the GitHub Release and tag at the same
+commit. The release branch is kept as the reproducible source for that version.
+
+Use a new version for each release. Existing release branches are never
+overwritten. Leave `release` empty to run a build without creating a release.
+
 ## Local development in this repository
 
 Install zephyr SDK, `west` command ([official document](https://docs.zephyrproject.org/latest/develop/west/install.html)). Execute below command.
